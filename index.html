@@ -6,135 +6,31 @@
   <title>Matius Store - Tokyo Ghoul Awakening</title>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #111;
-      color: #fff;
-    }
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    .price-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .price-card {
-      background: #222;
-      padding: 1rem;
-      border-radius: 10px;
-      width: 180px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .price-card:hover {
-      transform: scale(1.05);
-    }
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    input, select, button {
-      padding: 0.5rem;
-      border-radius: 5px;
-      border: none;
-    }
-    .fade-in {
-      animation: fadeIn 0.6s ease-in forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #000;
-      margin-top: 4rem;
-    }
-  </style>
-  <script>
-    function goToPayment(packageName, price) {
-      document.getElementById('selectedPackage').textContent = `Paket dipilih: ${packageName} - Rp ${price}`;
-      document.querySelector('.pricing').style.display = 'none';
-      document.getElementById('paymentSection').style.display = 'block';
-      document.getElementById('paymentSection').classList.add('fade-in');
-    }
-
-    function showConfirmation() {
-      document.getElementById('paymentSection').style.display = 'none';
-      document.getElementById('confirmationSection').style.display = 'block';
-      document.getElementById('confirmationSection').classList.add('fade-in');
-    }
-
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById('glitchOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        document.getElementById('mainContent').classList.add('fade-in');
-      }, 2000);
-    }
-  </script>
 </head>
 <body>
   <div class="glitch-overlay" id="glitchOverlay">
-    <h1 class="glitch-text">Matius Store</h1>
+    <h1 class="glitch-text" data-text="Matius Store">Matius Store</h1>
   </div>
   <main id="mainContent" style="display:none;">
     <header>
-      <h1>MATIUS STORE</h1>
+      <h1 style="color: #8B0000;">MATIUS STORE</h1>
       <p>Top Up Tokyo Ghoul Awakening • SEA Server</p>
     </header>
 
     <section class="pricing">
       <h2>Paket Diamond</h2>
       <div class="price-list">
-        <div class="price-card">
-          <h3>60 Diamonds</h3>
-          <p>Rp 5.000</p>
-          <button onclick="goToPayment('60 Diamonds', '5000')">Beli</button>
-        </div>
-        <div class="price-card">
-          <h3>500 Diamonds</h3>
-          <p>Rp 25.000</p>
-          <button onclick="goToPayment('500 Diamonds', '25000')">Beli</button>
-        </div>
-        <div class="price-card">
-          <h3>1000 Diamonds</h3>
-          <p>Rp 50.000</p>
-          <button onclick="goToPayment('1000 Diamonds', '50000')">Beli</button>
-        </div>
-        <div class="price-card">
-          <h3>1500 Diamonds</h3>
-          <p>Rp 75.000</p>
-          <button oneclick="goToPayment('1500 Diamonds', '75000')">Beli</button>
+        <div class="price-card"><h3>60 Diamonds</h3><p>Rp 5.000</p><button onclick="goToPayment('60 Diamonds', '5000')">Beli</button></div>
+        <div class="price-card"><h3>500 Diamonds</h3><p>Rp 25.000</p><button onclick="goToPayment('500 Diamonds', '25000')">Beli</button></div>
+        <div class="price-card"><h3>1000 Diamonds</h3><p>Rp 50.000</p><button onclick="goToPayment('1000 Diamonds', '50000')">Beli</button></div>
+        <div class="price-card"><h3>1500 Diamonds</h3><p>Rp 75.000</p><button onclick="goToPayment('1500 Diamonds', '75000')">Beli</button></div>
+        <div class="price-card"><h3>5000 Diamonds</h3><p>Rp 100.000</p><button onclick="goToPayment('5000 Diamonds', '100000')">Beli</button></div>
       </div>
-        <div class="price-card">
-          <h3>5000 Diamonds</h3>
-          <p>Rp 100.000</p>
-          <button oneclik="goToPayment('5000 Diamonds', '100000')">Beli</button>
-        </div>
 
       <h2 style="margin-top: 2rem;">Membership</h2>
       <div class="price-list">
-        <div class="price-card">
-          <h3>Weekly Pass</h3>
-          <p>Rp 20.000</p>
-          <button onclick="goToPayment('Weekly Pass', '20000')">Beli</button>
-        </div>
-        <div class="price-card">
-          <h3>Monthly Pass</h3>
-          <p>Rp 60.000</p>
-          <button onclick="goToPayment('Monthly Pass', '60000')">Beli</button>
-        </div>
+        <div class="price-card"><h3>Weekly Pass</h3><p>Rp 20.000</p><button onclick="goToPayment('Weekly Pass', '20000')">Beli</button></div>
+        <div class="price-card"><h3>Monthly Pass</h3><p>Rp 60.000</p><button onclick="goToPayment('Monthly Pass', '60000')">Beli</button></div>
       </div>
     </section>
 
@@ -144,7 +40,6 @@
       <form onsubmit="event.preventDefault(); showConfirmation();">
         <label for="playerId">ID Pemain:</label>
         <input type="text" id="playerId" name="playerId" required>
-
         <label for="paymentMethod">Metode Pembayaran:</label>
         <select id="paymentMethod" name="paymentMethod">
           <option value="dana">DANA</option>
@@ -152,7 +47,6 @@
           <option value="gopay">GoPay</option>
           <option value="qris">QRIS</option>
         </select>
-
         <button type="submit">Konfirmasi</button>
       </form>
     </section>
