@@ -1,116 +1,164 @@
-
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tokyo Ghoul Awakening - Matius Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matius Store - Tokyo Ghoul Awakening</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #0d0d0d;
+      padding: 0;
+      background-color: #111;
       color: #fff;
-      overflow: hidden;
-    }
-    .glitch {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3em;
-      color: red;
-      font-family: 'Orbitron', sans-serif;
-      animation: glitchAnim 2s steps(2, end) forwards;
-      z-index: 9999;
-    }
-    @keyframes glitchAnim {
-      0% {opacity: 1;}
-      100% {opacity: 0; visibility: hidden;}
     }
     header {
       text-align: center;
-      padding: 30px 20px;
-      border-bottom: 2px solid #ff3333;
+      padding: 2rem 1rem;
     }
-    header h1 {
-      color: #ff3333;
-      font-family: 'Orbitron', sans-serif;
+    .price-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
     }
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #1a1a1a;
+    .price-card {
+      background: #222;
+      padding: 1rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+      width: 180px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .price-card:hover {
+      transform: scale(1.05);
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     input, select, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
+      padding: 0.5rem;
       border-radius: 5px;
       border: none;
-      background-color: #333;
-      color: white;
     }
-    button {
-      background-color: #ff3333;
-      cursor: pointer;
+    .fade-in {
+      animation: fadeIn 0.6s ease-in forwards;
     }
-    button:hover {
-      background-color: #cc0000;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    audio {
-      display: none;
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #000;
+      margin-top: 4rem;
     }
   </style>
+  <script>
+    function goToPayment(packageName, price) {
+      document.getElementById('selectedPackage').textContent = `Paket dipilih: ${packageName} - Rp ${price}`;
+      document.querySelector('.pricing').style.display = 'none';
+      document.getElementById('paymentSection').style.display = 'block';
+      document.getElementById('paymentSection').classList.add('fade-in');
+    }
+
+    function showConfirmation() {
+      document.getElementById('paymentSection').style.display = 'none';
+      document.getElementById('confirmationSection').style.display = 'block';
+      document.getElementById('confirmationSection').classList.add('fade-in');
+    }
+
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('glitchOverlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById('mainContent').classList.add('fade-in');
+      }, 2000);
+    }
+  </script>
 </head>
-<body >
+<body>
+  <div class="glitch-overlay" id="glitchOverlay">
+    <h1 class="glitch-text">Matius Store</h1>
+  </div>
+  <main id="mainContent" style="display:none;">
+    <header>
+      <h1>MATIUS STORE</h1>
+      <p>Top Up Tokyo Ghoul Awakening • SEA Server</p>
+    </header>
 
-<div class="glitch">TOKYO GHOUL</div>
+    <section class="pricing">
+      <h2>Paket Diamond</h2>
+      <div class="price-list">
+        <div class="price-card">
+          <h3>60 Diamonds</h3>
+          <p>Rp 10.000</p>
+          <button onclick="goToPayment('60 Diamonds', '10000')">Beli</button>
+        </div>
+        <div class="price-card">
+          <h3>300 Diamonds</h3>
+          <p>Rp 45.000</p>
+          <button onclick="goToPayment('300 Diamonds', '45000')">Beli</button>
+        </div>
+        <div class="price-card">
+          <h3>1000 Diamonds</h3>
+          <p>Rp 130.000</p>
+          <button onclick="goToPayment('1000 Diamonds', '130000')">Beli</button>
+        </div>
+      </div>
 
-<header>
-  <h1>MATIUS STORE</h1>
-  <p>Top Up Tokyo Ghoul Awakening • SEA Server</p>
-</header>
+      <h2 style="margin-top: 2rem;">Membership</h2>
+      <div class="price-list">
+        <div class="price-card">
+          <h3>Weekly Pass</h3>
+          <p>Rp 20.000</p>
+          <button onclick="goToPayment('Weekly Pass', '20000')">Beli</button>
+        </div>
+        <div class="price-card">
+          <h3>Monthly Pass</h3>
+          <p>Rp 60.000</p>
+          <button onclick="goToPayment('Monthly Pass', '60000')">Beli</button>
+        </div>
+      </div>
+    </section>
 
-<div class="container">
-  <form id="topupForm">
-    <label for="userId">User ID:</label>
-    <input type="text" id="userId" placeholder="Masukkan User ID" required>
-    <label for="jumlah">Jumlah Top Up:</label>
-    <select id="jumlah" required>
-      <option value="">-- Pilih --</option>
-      <option value="60 Diamonds">60 Diamonds</option>
-      <option value="300 Diamonds">300 Diamonds</option>
-      <option value="1000 Diamonds">1000 Diamonds</option>
-      <option value="1500 Diamonds">1500 Diamonds</option>
-      <option value="2500 Diamonds">2500 Diamonds</option>
-      <option value="5000 Diamonds">5000 Diamonds</option>
-      <option value="10000 Diamonds">10000 Diamonds</option>
-    </select>
-    <label for="payment">Metode Pembayaran:</label>
-    <select id="payment" required>
-      <option value="">-- Pilih --</option>
-      <option value="Dana">Dana</option>
-      <option value="OVO">OVO</option>
-      <option value="Gopay">Gopay</option>
-    </select>
-    <button type="submit">Kirim Pesanan</button>
-  </form>
-</div>
+    <section id="paymentSection" style="display:none;">
+      <h2>Pembayaran</h2>
+      <p id="selectedPackage"></p>
+      <form onsubmit="event.preventDefault(); showConfirmation();">
+        <label for="playerId">ID Pemain:</label>
+        <input type="text" id="playerId" name="playerId" required>
 
-<script>
-  document.getElementById("topupForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Pesanan berhasil dikirim!");
-  });
-</script>
+        <label for="paymentMethod">Metode Pembayaran:</label>
+        <select id="paymentMethod" name="paymentMethod">
+          <option value="dana">DANA</option>
+          <option value="ovo">OVO</option>
+          <option value="gopay">GoPay</option>
+          <option value="qris">QRIS</option>
+        </select>
 
+        <button type="submit">Konfirmasi</button>
+      </form>
+    </section>
+
+    <section id="confirmationSection" style="display:none; text-align:center;">
+      <h2>Terima Kasih!</h2>
+      <p>Pembayaran kamu sedang diproses.</p>
+      <p>Silakan cek Instagram kami untuk bantuan lebih lanjut:</p>
+      <p><a href="https://instagram.com/matiusstore6" target="_blank" style="color: #00f">@matiusstore6</a></p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Matius Store. All rights reserved.</p>
+      <p>Customer Service: <a href="https://instagram.com/matiusstore6" target="_blank" style="color: #0cf">@matiusstore6</a></p>
+    </footer>
+  </main>
 </body>
 </html>
